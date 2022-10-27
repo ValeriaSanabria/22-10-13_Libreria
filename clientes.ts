@@ -1,56 +1,84 @@
 import { Libro } from "./libros";
+import { Revista } from "./revistas";
 
-export class Cliente extends Libro{
+export class Cliente {
     protected nombreApellido: string;
     protected dni: number;
     protected direccion: string;
-    protected autoresFavoritos: Libro[];
-    protected generosFavoritos: Libro[];
-    protected compras: string[];
+    protected autoresFavoritos: string[];
+    protected generosFavoritos: string[];
+    protected comprasLibro: Libro[];
+    protected comprasRevista: Revista[];
+    protected descuento: number;
 
-    constructor(pNombre, pAutor, pPrecio, pCantidad, pResumen, pGenero, pnombreApellido: string, pDni: number, pDireccion: string, pAutorFav: Libro[], pGenFav: Libro[], pCompras: string[]){
-        super(pNombre, pAutor, pPrecio, pCantidad, pResumen, pGenero);
+    constructor(pnombreApellido: string, pDni: number, pDireccion: string, pAutorFav: string[], pGenFav: string[], pComprasLibro: Libro[], pComprasRevista: Revista[], pDescuento: number) {
         this.nombreApellido = pnombreApellido;
         this.dni = pDni;
         this.direccion = pDireccion;
         this.autoresFavoritos = pAutorFav;
         this.generosFavoritos = pGenFav;
-        this.compras = pCompras;
+        this.comprasLibro = pComprasLibro;
+        this.comprasRevista = pComprasRevista;
+        this.descuento = pDescuento;
     }
 
-    public setNombreApellido(): string{
-        return this.nombreApellido;
-    }
-
-    public getNombreApellido(pnombreApellido: string): void{
+    public setNombreApellido(pnombreApellido: string): void {
         this.nombreApellido = pnombreApellido;
     }
 
-    public setDni(): number{
-        return this.dni;
+    public getNombreApellido() {
+        return this.nombreApellido;
     }
 
-    public getDni(pDni: number): void{
+    public setDni(pDni: number): void {
         this.dni = pDni;
     }
 
-    public setDireccion(): string{
-        return this.direccion; 
+    public getDni() {
+        return this.dni;
     }
 
-    public getDireccion(pDireccion: string): void{
+    public setDireccion(pDireccion: string): void {
         this.direccion = pDireccion;
     }
 
-    public buscarAutor(autorBuscado: Libro): boolean{
+    public getDireccion() {
+        return this.direccion;
+    }
+
+    public getAutoresFav() {
+        return this.autoresFavoritos;
+    }
+
+    public getGenerosFav() {
+        return this.generosFavoritos;
+    }
+
+    public getComprasLibros(): Libro[] {
+        return this.comprasLibro;
+    }
+
+    public getComprasRevista(): Revista[] {
+        return this.comprasRevista;
+    }
+
+    public setDescuento(pDescuento: number): void {
+        this.descuento = pDescuento;
+    }
+
+    public getDescuento() {
+        return this.descuento;
+    }
+
+    public buscarAutor(autorBuscado: string): boolean {
         let auxiliar: number = 0;
-        for(let i = 0; i < this.autoresFavoritos.length; i++){
-            if (autorBuscado === this.autoresFavoritos[i]){
+        for (let i = 0; i < this.autoresFavoritos.length; i++) {
+            if (autorBuscado === this.autoresFavoritos[i]) {
                 console.log("Se encontro el autor favorito");
                 auxiliar = 1;
             }
         }
-        if (auxiliar === 1){
+        if (auxiliar === 1) {
             return true
         } else {
             return false
