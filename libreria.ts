@@ -16,8 +16,8 @@ export class Libreria extends Cliente {
     private listaLibros: Libro[];
     private listaRevistas: Revista[];
 
-    constructor(pNombreApellido, pDni, pDireccion, pAutorFav, pGenFav, pCompras, pDescuento, pListaClientes: Cliente[], pListaLibros: Libro[], pListaRevista: Revista[]) {
-        super(pNombreApellido, pDni, pDireccion, pAutorFav, pGenFav, pCompras, pDescuento)
+    constructor(pNombreApellido, pDni, pDireccion, pAutorFav, pGenFav, pComprasLibros, pComprasRevistas, pDescuento, pListaClientes: Cliente[], pListaLibros: Libro[], pListaRevista: Revista[]) {
+        super(pNombreApellido, pDni, pDireccion, pAutorFav, pGenFav, pComprasLibros, pComprasRevistas, pDescuento)
         this.listaClientes = pListaClientes;
         this.listaLibros = pListaLibros;
         this.listaRevistas = pListaRevista;
@@ -75,16 +75,5 @@ export class Libreria extends Cliente {
             }
         }
         return compraConfirmada;
-    }
-
-    conocerSiGustaLibro(cliente: Cliente, libro: Libro): boolean {
-        let listaLibroFav = cliente.getAutoresFav();
-
-        for (let i = 0; i < this.autoresFavoritos.length; i++) {
-            if (this.autoresFavoritos[i].getNombre() === libro.getNombre()) {
-                return true;
-            }
-        }
-        return false;
     }
 }
