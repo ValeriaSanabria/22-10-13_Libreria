@@ -1,5 +1,9 @@
-import { Libro } from "./libros";
-import { Revista } from "./revistas";
+import {
+    Libro
+} from "./libros";
+import {
+    Revista
+} from "./revistas";
 
 export class Cliente {
     protected nombreApellido: string;
@@ -84,5 +88,4 @@ export class Cliente {
             return false
         }
     }
-
 }
