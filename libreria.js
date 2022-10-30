@@ -1,30 +1,20 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 exports.__esModule = true;
 exports.Libreria = void 0;
-var clientes_1 = require("./clientes");
-var Libreria = /** @class */ (function (_super) {
-    __extends(Libreria, _super);
-    function Libreria(pNombreApellido, pDni, pDireccion, pAutorFav, pGenFav, pComprasLibros, pComprasRevistas, pDescuento, pListaClientes, pListaLibros, pListaRevista) {
-        var _this = _super.call(this, pNombreApellido, pDni, pDireccion, pAutorFav, pGenFav, pComprasLibros, pComprasRevistas, pDescuento) || this;
-        _this.listaClientes = pListaClientes;
-        _this.listaLibros = pListaLibros;
-        _this.listaRevistas = pListaRevista;
-        return _this;
+var Libreria = /** @class */ (function () {
+    function Libreria(pListaClientes, pListaLibros, pListaRevista) {
+        this.listaClientes = pListaClientes;
+        this.listaLibros = pListaLibros;
+        this.listaRevistas = pListaRevista;
     }
     Libreria.prototype.setRevista = function (nuevaRevista) {
         this.listaRevistas.push(nuevaRevista);
@@ -40,39 +30,16 @@ var Libreria = /** @class */ (function (_super) {
         precioConDescuento = articulo.getPrecio() * (1 - cliente.getDescuento());
         return precioConDescuento;
     };
-    Libreria.prototype.buscarAutor = function (autorBuscado) {
-        var auxiliar = 0;
-        for (var i = 0; i < this.autoresFavoritos.length; i++) {
-            if (autorBuscado === this.autoresFavoritos[i]) {
-                console.log("Se encontro el autor favorito");
-                auxiliar = 1;
+    Libreria.prototype.libroRevistaComprado = function (cliente, articulo) {
+        var encontrado = false;
+        var listaLibrosRevistas = __spreadArray(__spreadArray([], cliente.getComprasLibros().concat(), true), cliente.getComprasRevista(), true);
+        for (var i = 0; i < listaLibrosRevistas.length; i++) {
+            if (articulo.getNombre() === listaLibrosRevistas[i].getNombre()) {
+                encontrado = true;
             }
         }
-        if (auxiliar === 1) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-    Libreria.prototype.conocerLibroRevistaComprado = function (cliente, articulo) {
-        var librosComprados = cliente.getComprasLibros();
-        var revistasCompradas = cliente.getComprasRevista();
-        var compraConfirmada = false;
-        for (var i = 0; i < librosComprados.length; i++) {
-            if (librosComprados[i].getNombre() === articulo.getNombre()) {
-                compraConfirmada = true;
-            }
-        }
-        if (!compraConfirmada) {
-            for (var i = 0; i < revistasCompradas.length; i++) {
-                if (revistasCompradas[i].getNombre() === articulo.getNombre()) {
-                    compraConfirmada = true;
-                }
-            }
-        }
-        return compraConfirmada;
+        return encontrado;
     };
     return Libreria;
-}(clientes_1.Cliente));
+}());
 exports.Libreria = Libreria;

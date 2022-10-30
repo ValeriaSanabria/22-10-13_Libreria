@@ -1,9 +1,9 @@
 import {
     Libro
-} from "./libros";
+} from "./libro";
 import {
     Revista
-} from "./revistas";
+} from "./revista";
 
 export class Cliente {
     protected nombreApellido: string;
@@ -74,18 +74,31 @@ export class Cliente {
         return this.descuento;
     }
 
-    public buscarAutor(autorBuscado: string): boolean {
-        let auxiliar: number = 0;
-        for (let i = 0; i < this.autoresFavoritos.length; i++) {
-            if (autorBuscado === this.autoresFavoritos[i]) {
-                console.log("Se encontro el autor favorito");
-                auxiliar = 1;
+    public leGustaLibro(libro: Libro): boolean {
+        let encontrado: boolean = false;
+        for (let i: number = 0; i < this.autoresFavoritos.length; i++) {
+            if (libro.getAutor() === this.autoresFavoritos[i]) {
+                encontrado = true;
             }
         }
-        if (auxiliar === 1) {
-            return true
-        } else {
-            return false
+
+        return encontrado;
+    }
+
+    public leGustaLibroExigente(libro: Libro): boolean {
+        let encontradoAutor: boolean = false;
+        let encontradoGenero: boolean = false;
+        for (let i: number = 0; i < this.autoresFavoritos.length; i++) {
+            if (libro.getAutor() === this.autoresFavoritos[i]) {
+                encontradoAutor = true;
+                for (let i: number = 0; i < this.generosFavoritos.length; i++) {
+                    if (libro.getGenero() === this.generosFavoritos[i]) {
+                        encontradoGenero = true;
+                    }
+                }
+            }
         }
+        
+        return encontradoAutor && encontradoGenero;
     }
 }

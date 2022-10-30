@@ -48,20 +48,29 @@ var Cliente = /** @class */ (function () {
     Cliente.prototype.getDescuento = function () {
         return this.descuento;
     };
-    Cliente.prototype.buscarAutor = function (autorBuscado) {
-        var auxiliar = 0;
+    Cliente.prototype.leGustaLibro = function (libro) {
+        var encontrado = false;
         for (var i = 0; i < this.autoresFavoritos.length; i++) {
-            if (autorBuscado === this.autoresFavoritos[i]) {
-                console.log("Se encontro el autor favorito");
-                auxiliar = 1;
+            if (libro.getAutor() === this.autoresFavoritos[i]) {
+                encontrado = true;
             }
         }
-        if (auxiliar === 1) {
-            return true;
+        return encontrado;
+    };
+    Cliente.prototype.leGustaLibroExigente = function (libro) {
+        var encontradoAutor = false;
+        var encontradoGenero = false;
+        for (var i = 0; i < this.autoresFavoritos.length; i++) {
+            if (libro.getAutor() === this.autoresFavoritos[i]) {
+                encontradoAutor = true;
+                for (var i_1 = 0; i_1 < this.generosFavoritos.length; i_1++) {
+                    if (libro.getGenero() === this.generosFavoritos[i_1]) {
+                        encontradoGenero = true;
+                    }
+                }
+            }
         }
-        else {
-            return false;
-        }
+        return encontradoAutor && encontradoGenero;
     };
     return Cliente;
 }());

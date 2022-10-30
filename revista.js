@@ -16,7 +16,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 exports.Revista = void 0;
-var datosGenericos_1 = require("./datosGenericos");
+var articulo_1 = require("./articulo");
 var Revista = /** @class */ (function (_super) {
     __extends(Revista, _super);
     function Revista(pNombre, pAutor, pPrecio, pNumero, pAño) {
@@ -38,5 +38,5 @@ var Revista = /** @class */ (function (_super) {
         return this.año;
     };
     return Revista;
-}(datosGenericos_1.Datos));
+}(articulo_1.Articulo));
 exports.Revista = Revista;

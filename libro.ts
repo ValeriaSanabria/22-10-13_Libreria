@@ -1,8 +1,8 @@
 import {
-    Datos
-} from "./datosGenericos";
+    Articulo
+} from "./articulo";
 
-export class Libro extends Datos {
+export class Libro extends Articulo {
     protected cantidadPaginas: number;
     protected resumen: string;
     protected generoLiterario: string;

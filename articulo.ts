@@ -1,4 +1,4 @@
-export class Datos {
+export class Articulo {
     protected nombre: string;
     protected autor: string;
     protected precio: number;

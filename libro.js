@@ -16,7 +16,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 exports.Libro = void 0;
-var datosGenericos_1 = require("./datosGenericos");
+var articulo_1 = require("./articulo");
 var Libro = /** @class */ (function (_super) {
     __extends(Libro, _super);
     function Libro(pNombre, pAutor, pPrecio, pCantidad, pResumen, pGenero) {
@@ -45,5 +45,5 @@ var Libro = /** @class */ (function (_super) {
         return this.generoLiterario;
     };
     return Libro;
-}(datosGenericos_1.Datos));
+}(articulo_1.Articulo));
 exports.Libro = Libro;
